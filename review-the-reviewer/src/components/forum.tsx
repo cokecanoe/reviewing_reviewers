@@ -1,11 +1,22 @@
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+import { ForumPost, ForumPostProps } from "./forumPost";
 
-const Forum = () => {
+interface ForumProps {
+  posts: Array<ForumPostProps>;
+}
+
+const Forum = ({ posts }: ForumProps) => {
   return (
-    <Grid container style={{ backgroundColor: "blue" }}>
-      <Grid item xs={12}>
-        <Typography>Forum</Typography>
-      </Grid>
+    <Grid
+      container
+      style={{ borderColor: "#000", borderWidth: 2, borderStyle: "solid" }}
+      justifyContent="center"
+    >
+      {posts.map((post) => (
+        <Grid item xs={10} style={{ padding: 20 }}>
+          <ForumPost {...post} />
+        </Grid>
+      ))}
     </Grid>
   );
 };
